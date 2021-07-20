@@ -1,0 +1,19 @@
+version: "3"
+services:
+    etcd:
+        build: 
+            context: .
+            dockerfile: ./dockerfile
+        restart: unless-stopped
+        ulimits: 
+            memlock: -1
+            nofile: 1048576
+        logging: 
+            options: 
+                max-size: 16m
+        ports: 
+            - "2379-2380"
+        command: "etcd --config-file /project/etcd.conf.yml"
+        
+
+        
